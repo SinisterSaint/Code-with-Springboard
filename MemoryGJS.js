@@ -67,7 +67,7 @@ flipcard(event.target)
 function flipcard(e) {
   // Element.classList.remove("backOfCard")
   const pickedCard = e.currentTarget;
-  e.target.classList.toggle("backOfCard");
+  e.classList.toggle("backOfCard");
   
 
   // pickedCard.className = element.classList.remove("backOfCard");
