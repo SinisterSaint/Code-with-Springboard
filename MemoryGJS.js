@@ -74,9 +74,23 @@ function flipcard(e) {
 
 }
 
+let choice = null;
+
 function cardclicked () {
   addEventListener("click", flipcard);
+ 
+if (!selectedCard) {
+  choice = pickedCard;
+  // if card not clicked, track and display color 
+  
+}
+else if (choice){
+  // If card clicked, confirm that new card matches the previous
+
+}
+
  }
+ 
 // // when the DOM loads
 createDivsForColors(shuffledColors);
 
