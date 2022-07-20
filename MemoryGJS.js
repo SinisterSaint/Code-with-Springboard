@@ -1,4 +1,6 @@
 const gameContainer = document.getElementById("game");
+let stopClick = false;
+let matchesFound = 0;
 
 const COLORS = [
   "red",
@@ -56,6 +58,7 @@ function createDivsForColors(colorArray) {
   }
 }
 
+
 // TODO: Implement this function!
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
@@ -68,6 +71,13 @@ function flipcard(e) {
   // Element.classList.remove("backOfCard")
   const pickedCard = e.currentTarget;
   e.classList.toggle("backOfCard");
+
+  if (stopClick || pickedCard === choice ||
+    pickedCard.classList.includes("match")) {
+      e.classList.remove("backOfCard");
+      pickedCard.classList += "match";
+    return;
+  }
   
 
   // pickedCard.className = element.classList.remove("backOfCard");
@@ -79,13 +89,40 @@ let choice = null;
 function cardclicked () {
   addEventListener("click", flipcard);
  
-if (!selectedCard) {
-  choice = pickedCard;
+if (!choice) {
   // if card not clicked, track and display color 
-  
+  choice = pickedCard;
+ 
 }
 else if (choice){
   // If card clicked, confirm that new card matches the previous
+  stopClick = true;
+  if (choice.className !==
+   pickedCard.className){
+    // choice.className += "match";
+    // pickedCard.className += "match";
+    stopClick = true;
+    console.log("Cards are a MATCH!!");
+    choice = null;
+  }
+  else {
+    console.log("Cards are NOT a MATCH!")
+    setTimeout(() => {
+    choice.className.replace("match", "");
+    pickedCard.className.replace("match", "");
+      choice = null; 
+      stopClick = false;
+    }, 1000);
+  }
+  else {
+    matchesFound++;
+    choice = null;
+    if (matchesFound === 8){
+      alert("CONGRATULATIONS! YOU WIN!");
+    }
+     
+  }
+  
 
 }
 
