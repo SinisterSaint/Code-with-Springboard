@@ -68,12 +68,13 @@ flipcard(event.target)
 
 // Function for when card is clicked, it removes the backOfCard class
 function flipcard(e) {
-  // Element.classList.remove("backOfCard")
-  const pickedCard = e.currentTarget;
+  // element.classList.remove("backOfCard")
+  const pickedCard = e;
+  console.log(e.currentTarget)
   e.classList.toggle("backOfCard");
 
   if (stopClick || pickedCard === choice ||
-    pickedCard.classList.includes("match")) {
+    pickedCard.classList.contains("match")) {
       e.classList.remove("backOfCard");
       pickedCard.classList += "match";
     return;
@@ -105,6 +106,15 @@ else if (choice){
     console.log("Cards are a MATCH!!");
     choice = null;
   }
+
+  else if (choice) {
+    matchesFound++;
+    choice = null;
+    if (matchesFound === 8){
+      alert("CONGRATULATIONS! YOU WIN!");
+    }
+     
+  }
   else {
     console.log("Cards are NOT a MATCH!")
     setTimeout(() => {
@@ -114,14 +124,7 @@ else if (choice){
       stopClick = false;
     }, 1000);
   }
-  else {
-    matchesFound++;
-    choice = null;
-    if (matchesFound === 8){
-      alert("CONGRATULATIONS! YOU WIN!");
-    }
-     
-  }
+  
   
 
 }
