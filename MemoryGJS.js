@@ -105,6 +105,8 @@ else if (choice){
     stopClick = true;
     console.log("Cards are a MATCH!!");
     choice = null;
+    choice.classList.remove("backOfCard");
+    pickedCard.classList.remove("backofCard");
   }
 
   else if (choice) {
