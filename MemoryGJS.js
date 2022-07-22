@@ -100,7 +100,7 @@ function flipcard(card) {
 
 function checkForMatch() {
     if (!card1 || !card2){
-    clickedCard.classList.add("flipped");    
+    clickedCard.classList.add("backOfCard");    
     stopClick = true;
     card1 = card1 || clickedCard;
     card2 = clickedCard === card1 ? null : clickedCard;
