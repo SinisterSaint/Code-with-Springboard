@@ -74,7 +74,7 @@ function handleCardClick(event) {
     let clickedCard = event.target
     if (clickedCard.classList.contains("backOfCard") && stopClick === false) {
         flipcard(clickedCard);
-        checkForMatch();
+        checkForMatch(clickedCard);
         checkGameOver();
         resetCards();
         
@@ -98,17 +98,27 @@ function flipcard(card) {
 
 }
 
-function checkForMatch() {
-    if (!card1 || !card2){
-    clickedCard.classList.add("backOfCard");    
-    stopClick = true;
-    card1 = card1 || clickedCard;
-    card2 = clickedCard === card1 ? null : clickedCard;
+function checkForMatch(clickedCard) {
+    
+    // if (!card1 || !card2){
+    // clickedCard.classList.add("backOfCard");    
+    // stopClick = true;
+    // card1 = card1 || clickedCard;
+    // card2 = clickedCard === card1 ? null : clickedCard;
+    // }
+
+    if (!card1 || !card2 ){
+        return;
     }
+
+  
 
     if (card1 && card2){
         stopClick = true;
+
     }
+
+    
 
     if (card1.dataset.cardColor === card2.dataset.cardColor){
         matchesFound += 2;
@@ -127,6 +137,14 @@ function checkGameOver() {
 }
 
 function resetCards() {
+    if (!card1 || !card2 ){
+        return;
+    }
+
+    if (card1.dataset !== card2.dataset){
+        stopClick = false;
+        return;
+    }
 
 }
 
